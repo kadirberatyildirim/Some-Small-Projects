@@ -8,10 +8,10 @@ def timesTableLines():
         lines.append(startAndFinish = [dots[i], dots[dot_indexes[i] * times % N]])
 
 theta = np.linspace(0, 2*np.pi, 1000) #Required for drawing circle
-N = 10
+N = 200
 dots = np.arange(0, np.pi * 2, 2 * np.pi / N)
 dot_indexes = np.arange(N)
-times = 2 #Some interesting points: 2, 3, 21, 29, 33, 34, 51, 67, 68, 80, 99
+times = 34 #Some interesting points: 2, 3, 21, 29, 33, 34, 51, 67, 68, 80, 99
 
 plt.style.use('dark_background') #Some nice fonts: ggplot, dark_background
 fig = plt.figure()

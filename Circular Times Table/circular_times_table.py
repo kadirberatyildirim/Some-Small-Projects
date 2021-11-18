@@ -17,31 +17,33 @@ def drawTimesTableLines():
         startAndFinish = [dots[i], dots[dot_indexes[i] * times % N]]
         plt.plot(-np.cos(startAndFinish), np.sin(startAndFinish), linewidth = 1)
 
-def createDots(desiredN):
-    global N, times, dots, dot_indexes
-    
+def plotConfig():
+    plt.axis('off')
+    #Next two lines make the figure fullscreen
+    mng = plt.get_current_fig_manager()
+    mng.window.state('zoomed')
+    #Next two lines keep the aspect ratio of figure
+    ax = plt.gca() #you first need to get the axis handle
+    ax.set_aspect(1) #sets the height to width ratio to 1.5. 
+  
 def update():
+    plotConfig()
     makeUnitCircle()
     putDotsOnCircle()
     drawTimesTableLines()
 
 N = 200
-times = 2
+#times = 2 #Some interesting points: 2, 3, 21, 29, 33, 34, 51, 67, 68, 80, 99
 dots = np.arange(0, np.pi * 2, 2 * np.pi / N)
 dot_indexes = np.arange(N)
 
-#============================================Figure config
 plt.style.use('dark_background') #Nice fonts: ggplot, dark_background
-plt.axis('off')
-#Next two lines make the figure fullscreen
-mng = plt.get_current_fig_manager()
-mng.window.state('zoomed')
-#Next two lines keep the aspect ratio of figure
-ax = plt.gca() #you first need to get the axis handle
-ax.set_aspect(1) #sets the height to width ratio to 1.5. 
-#============================================
 
-update()
+for i in range(2, 100):
+    plt.clf()
+    plt.annotate('Times: ' + str(i), (0.7, 1))
+    times = i
+    update()
+    plt.pause(0.05)
 
 plt.show()
-
